@@ -3,10 +3,6 @@ title: Curiouser and Curiouser
 author: Maxim Kropotov
 description: > # this means to ignore newlines until "baseurl:"
                Adventures in the wonderland of software developement
-#               But I don’t want to go among bugs," Alice remarked.
-#               "Oh, you can’t help that," said the Cat: "we’re all bugs here. I’m a bug. You’re a bug."
-#               "How do you know I’m a bug?" said Alice.
-#               "You must be," said the Cat, "or you wouldn’t have come here.”
 baseurl: "" 
 url: "https://undeadcat.github.io"
 twitter_username: mskropotov
