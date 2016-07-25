@@ -15,17 +15,17 @@ During the last year I've had to
 * reduce a system's latency by replacing compare-and-set with a global lock
 * submit some code to the Mono repository (ok, ok, just a failing [test](https://github.com/mono/mono/blob/5e81ed1e03581885585e819c3dc14e60455cf42d/mcs/tests/gtest-634.cs) for a [bug](https://bugzilla.xamarin.com/show_bug.cgi?id=33669) :))
 * use WinDbg to debug MS Word and determine the cause of an issue in production
-* ??? multiple Windows bugs (known to the world, but not available through Windows Update at the time)
+* trace the root cause of an issue to a Windows bug
 	* [Error messages when a 32-bit application has the /LARGEADDRESSAWARE option](https://support.microsoft.com/en-us/kb/2588507)
 	* [Unexpected ASP.Net application shutdown after many App_Data file changes occur](https://support.microsoft.com/en-us/kb/3052480)
 
 	and my favorite one
 	
 	* [All the TCP/IP ports that are in a TIME_WAIT status are not closed after 497 days from system startup in Windows Server 2008](https://support.microsoft.com/en-us/kb/2553549)
-* spend time lots and lots of time chasing tricky bugs in our code and in almost every library we use. 
+* and generally spend time lots of time chasing tricky bugs in our code and in almost every library we use. 
 
 The most eye-opening moment came when in two neighbouring weeks a colleague and me came across two particularly gnarly bugs
-and in both cases after hours of pulling hair and debugging the world were saved from going crazy only by bumping into a blog post from <https://www.zpqrtbnk.net/>.
+and in both cases after hours of pulling hair and debugging the world were saved from going crazy only by bumping into a blog post from <https://www.zpqrtbnk.net/> describing the bug.
 They were:
  
  * a .NET Framework bug related to CultureInfos crossing an appdomain (<https://www.zpqrtbnk.net/posts/appdomains-threads-cultureinfos-and-paracetamol>)
@@ -37,11 +37,4 @@ Thank you, Stéphane Gay.
 
 So, here goes.
 I hope that in the near future I will have the time to write up some of the issues we've encountered and maybe this will save someone some time if they run across something similar.
-
-```
-public static void Main(string[] args){
-	
-}
-
-```
 
