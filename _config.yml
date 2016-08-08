@@ -7,5 +7,5 @@ baseurl: ""
 url: "https://undeadcat.github.io"
 twitter_username: mkropotov
 github_username:  undeadcat
-
+highlighter: pygments
 markdown: kramdown
