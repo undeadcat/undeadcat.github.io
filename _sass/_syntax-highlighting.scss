@@ -66,3 +66,8 @@
     .vi    { color: #008080 } // Name.Variable.Instance
     .il    { color: #099 } // Literal.Number.Integer.Long
 }
+
+.language-nasm .highlight .err
+{
+    color: #000000; background-color: #ffffff
+}
