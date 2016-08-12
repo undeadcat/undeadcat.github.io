@@ -144,7 +144,7 @@ user32!MessageBoxTimeoutW+0xa9:
 00000000`77741483 c3              ret
 </pre>
 
-Okay, so here rdx and r8 are copied to registers and than passed on to `user32!MessageBoxWorker`. Fortunately, this time they are passed as rsp+38h and rsp+40h. The stacktrace from windbg gives us Child-SP, the value of SP before a frame (MessageBoxTimeoutW) transfers control to its' child (MessageBoxWorker). We can inspect the value of [rsp+38h] and [rsp+40h].  
+Okay, so here rdx and r8 are copied to registers and then passed on to `user32!MessageBoxWorker`. Fortunately, this time they are passed as rsp+38h and rsp+40h. The stacktrace from windbg gives us Child-SP, the value of SP before a frame (MessageBoxTimeoutW) transfers control to its' child (MessageBoxWorker). We can inspect the value of [rsp+38h] and [rsp+40h].  
 
 <pre>
 0:008> dq 00000000`0676faf0
