@@ -63,7 +63,7 @@ Here we load the address of an indirection cell -- a pointer-sized value which s
 cmp     dword ptr [rcx],ecx
 ```
 
-Interestingly enough, this actually is a null check (Dereferencing a null pointer will cause an access violation that the runtime will turn into a NullReferenceException. For virtual calls, we dereference the object pointer anyway to get the method table, so an explicit check is not needed. The code that determines if an explicit check needs to be emitted can be found in [`CEEInfo::getCallInfo`][CEEInfo::getCallInfo].
+Interestingly enough, this actually is a null check (Dereferencing a null pointer will cause an access violation that the runtime will turn into a NullReferenceException. For virtual calls, we dereference the object pointer anyway to get the method table, so an explicit check is not needed. The code that determines if an explicit check needs to be emitted can be found in [`CEEInfo::getCallInfo`][CEEInfo::getCallInfo]).
 
 ```nasm
 call    qword ptr [r11]

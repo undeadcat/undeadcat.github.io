@@ -33,12 +33,12 @@ Using `!uniqstack` immediately gives the reason why Word is hanging: it's waitin
 ```
 
 The signature of MessageBoxW is: 
-```C++
+```
 int WINAPI MessageBox(
   _In_opt_ HWND    hWnd,
   _In_opt_ LPCTSTR lpText,
   _In_opt_ LPCTSTR lpCaption,
-  _In_     UINT    uType);``` It seems that it could be useful to know what the message box is showing, so we need to find the values of parameters lpText and lpCaption. `kp` seems to be able to show parameter values for a frame, but it does not work without private symbols. Too bad. `kb` can show the first three arguments. Let's try that.  
+  _In_     UINT    uType)```. It seems that it could be useful to know what the message box is showing, so we need to find the values of parameters lpText and lpCaption. `kp` seems to be able to show parameter values for a frame, but it does not work without private symbols. Too bad. `kb` can show the first three arguments. Let's try that.  
 
 ```
 0:008> kb
@@ -77,7 +77,7 @@ Fixed!
 ### We need to go deeper
 Some time later I thought it could be interesting to figure out where we took a wrong turn in our analysis, since it seemed like we stumbled onto the cause of the issue completely by accident. Time to get out our crash dump. 
 
-Turns out Windows uses different calling conventions on x86 and x64. WinApi x86 uses _stdcall, which means all function parameters are pushed onto the stack, so parameters of all functions above the current frame stay on the stack (where they can be viewed). On x64, the [calling convention][x64fastcall] is a variation of fastcall, so the first four parameters are passed using the registers rcx, rdx, r8 and r9. In non-optimised builds, the compiler generates code to store these registers on the stack in 20h bytes of 'home space' which must be allocated by a function's caller. With optimisation on, it does whatever it wants to do. [This article][debugging] (see the section "The Nightmare Begins") describes some debugging techniques.
+Turns out Windows uses different calling conventions on x86 and x64. WinApi x86 uses _stdcall, which means all function parameters are pushed onto the stack, so parameters of all functions above the current frame stay on the stack (where they can be viewed). On x64, the [calling convention][x64fastcall] is a variation of _fastcall, so the first four parameters are passed using the registers rcx, rdx, r8 and r9. In non-optimised builds, the compiler generates code to store these registers on the stack in 20h bytes of 'home space' which must be allocated by a function's caller. With optimisation on, it does whatever it wants to do. [This article][debugging] (see the section "The Nightmare Begins") describes some debugging techniques.
 
 Let's try to find the values passed to MessageBoxW. First, dump its' code.
 <pre>
